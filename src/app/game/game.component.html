@@ -1,0 +1,53 @@
+<div class="back">
+  <div class="row">
+      <div class="col-8 border-black" >
+        <app-grid [data]="data.getData()" [hero]="hero" [obstacles]="obstacles"></app-grid>
+      </div>
+      <div class="col-4 ">
+        
+          <div class="col-12 h-25">
+            <div class="height"></div>
+            <h6 >Mouvement: {{hero.movement}}</h6>
+            <div class="row" style="margin-bottom: 10px;">
+              <div class="col-4 offset-4">
+                <button type="button" class="btn btn-secondary col-12" (click)="changePosition(0)">Up</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <button type="button" class="btn btn-secondary col-12" (click)="changePosition(3)">Left</button>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-secondary col-12" (click)="changePosition(2)">Down</button>
+              </div>
+              <div class="col-4">
+                <button type="button" class="btn btn-secondary col-12" (click)="changePosition(1)">Right</button>
+              </div>
+            </div>
+            <div class="height"></div>
+            <div class="row">
+              <div class="col-12">
+                <h6>Sorts</h6>
+              </div>
+              <div class="col-12">
+                <a href="#" class="btn btn-primary" (click)="attaquer()"> Attaquer </a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4 offset-8">
+                <a href="#" class="btn btn-primary" (click)="finTour()">Fin tour</a>
+              </div>
+            </div>
+        </div>
+          <!-- <div class="col-12 h-75">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Sorts</h5>
+                <a href="#" class="btn btn-primary" (click)="attaquer()">Attaquer</a>
+              </div>
+            </div>
+          </div> -->
+        
+      </div>
+  </div>
+</div>

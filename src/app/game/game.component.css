@@ -1,0 +1,19 @@
+.border-red{
+    border: 1px solid red;
+    padding: 5px;
+}
+.border-yellow{
+    border: 1px solid yellow;
+}
+
+.border-blue{
+    border: 1px solid blue;
+}
+.back{
+    background-color: white;
+    border-radius: 5px;
+}
+
+.height{
+    padding-top: 20px;
+}

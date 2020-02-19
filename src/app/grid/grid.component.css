@@ -1,0 +1,15 @@
+.normalField{
+    background-color: green;
+    height: 37px;
+    border : 0.1px dashed sandybrown;
+}
+
+.obstacle{
+    background-color: gray;
+    height: 37px;
+    border : 0.5px dashed sandybrown;
+}
+.hero{
+    height: 37px;
+    background-size: 100% 100%;
+}

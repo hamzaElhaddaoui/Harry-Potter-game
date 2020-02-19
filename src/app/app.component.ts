@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Hero } from './models/Hero';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,17 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Harry-potter-app';
+  private isGameStarted = false;
+  private isHeroSelected = false;
+  title = 'Harry Potter';
+  private heroSelected:Hero;
+  
+  startGame(){
+    this.isGameStarted=true;
+  }
+  setHero(hero:Hero){
+    this.heroSelected=hero;
+    this.isHeroSelected=true;
+  }
+
 }
