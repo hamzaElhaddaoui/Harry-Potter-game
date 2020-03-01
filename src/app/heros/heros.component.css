@@ -11,3 +11,8 @@
 .selected{
     border: 3px solid #28a745;
 }
+
+.margin-btn{
+    margin-top: 30px;
+    margin-bottom: 50px;
+}

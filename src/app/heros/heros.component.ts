@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-heros',
@@ -8,32 +9,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class HerosComponent implements OnInit {
   private heros : object[];
   private heroSelected : object= {};
+  private url:string="https://localhost:44355/api/heroes";
   @Output() hero = new EventEmitter<any>();
 
-  constructor() { 
-    this.heros=[
-      {
-          "Epee": null,
-          "Id": 1,
-          "Nom": "Harry Potter",
-          "Avatar": "https://i.ibb.co/4sDH6tx/3.jpg",
-          "PositionY": 0,
-          "PositionX": 0,
-          "PointsDeVie": 0
-      },
-      {
-          "Epee": null,
-          "Id": 2,
-          "Nom": "captin majid",
-          "Avatar": "https://i.ibb.co/w6B1yKK/2.jpg",
-          "PositionY": 0,
-          "PositionX": 0,
-          "PointsDeVie": 0
-      }
-    ]
-  }
+  constructor(private http :HttpClient) {}
 
   ngOnInit() {
+    let obs = this.http.get(this.url)
+    obs.subscribe((response:any)=> {console.log(response.heroes);
+                  this.heros=response.heroes;})
   }
 
   setHero(hero:any){

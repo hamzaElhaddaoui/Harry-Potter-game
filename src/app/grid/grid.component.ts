@@ -3,6 +3,7 @@ import { AnonymousSubject } from 'rxjs/internal/Subject';
 import { DataService } from '../data.service';
 import { Hero } from '../models/Hero';
 import { Obstacles } from '../models/Obstacles';
+import { Monstre } from '../models/Monstre';
 
 @Component({
   selector: 'app-grid',
@@ -15,6 +16,7 @@ export class GridComponent implements OnInit, OnChanges{
   @Input('data') dataGrid : object[][];
   @Input() hero: Hero;
   @Input() obstacles: Obstacles[];
+  @Input() monstres:Monstre[];
 
   private field : object={
     type:"normalField",
@@ -38,9 +40,21 @@ export class GridComponent implements OnInit, OnChanges{
   }
 
   private fillObstacle(){
-    this.obstacles.forEach(obstacle => {
-      this.map[obstacle.PositionX][obstacle.PositionY]=obstacle;
-    })
+    if(this.obstacles!=null){
+      this.obstacles.forEach(obstacle => {
+        obstacle.type="obstacle";
+        this.map[obstacle.PositionX][obstacle.PositionY]=obstacle;
+      })
+    }
+  }
+
+  private fillMonstre(){
+    if (this.monstres!=null){
+      this.monstres.forEach(monstre => {
+        monstre.type="monstre";
+        this.map[monstre.PositionX][monstre.PositionY]= monstre;
+      })
+    }
   }
 
   private setHero(){
@@ -50,6 +64,7 @@ export class GridComponent implements OnInit, OnChanges{
   ngOnInit() {
     this.fillMap();
     this.fillObstacle();
+    this.fillMonstre();
     this.setHero();
     console.log(this.map);
   }
@@ -57,6 +72,7 @@ export class GridComponent implements OnInit, OnChanges{
   ngOnChanges(changes: SimpleChanges): void {
     this.fillMap(); 
     this.fillObstacle();
+    this.fillMonstre();
     this.setHero();
   }
 

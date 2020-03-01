@@ -1,0 +1,14 @@
+<div *ngFor="let monstre of monstres" class="card">
+  
+  <div class="row">
+    <div class="col-md-4">
+      <img [src]="monstre.Avatar" class="card-img">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h6 class="card-title">{{monstre.Nom}}</h6>
+        <p class="card-text">{{monstre.PointsDeVie}} &hearts; </p>
+      </div>
+    </div>
+  </div>
+</div>

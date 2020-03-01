@@ -69,6 +69,15 @@
     color: #212529;
     text-align: left;
     background-color: #fff;
+    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("./assets/images/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
   }
   
   [tabindex="-1"]:focus {
@@ -9659,13 +9668,9 @@
   }
   
   header.masthead {
-    padding-top: 10rem;
-    padding-bottom: calc(10rem - 72px);
-    background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("./assets/images/background.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
-    background-size: cover;
+    /* padding-top: 10rem;
+    padding-bottom: calc(10rem - 72px); */
+   
   }
   
   header.masthead h1 {
@@ -9674,7 +9679,7 @@
   
   @media (min-width: 992px) {
     header.masthead {
-      height: 100vh;
+      
       min-height: 40rem;
       padding-top: 72px;
       padding-bottom: 0;

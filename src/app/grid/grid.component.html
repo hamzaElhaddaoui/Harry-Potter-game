@@ -1,7 +1,8 @@
 <div *ngFor="let line of map" class="row no-gutters">
   <div *ngFor="let item of line" class=" col ">
     <div *ngIf="item.type=='normalField'" [class]="item.type" ></div>
-    <div *ngIf="item.type=='hero'" [class]="item.type" [ngStyle]="{'background-image': 'url('+item.Avatar+')'}"></div>
+    <div *ngIf="item.type=='hero'" [class]="item.type" [ngStyle]="{'background-image': 'url('+item.IGAvatar+')'}"></div>
     <div *ngIf="item.type=='obstacle'" [class]="item.type" ></div>
+    <div *ngIf="item.type=='monstre'" [class]="item.type" [ngStyle]="{'background-image':'url('+item.Avatar+')'}"></div>
   </div>
 </div>

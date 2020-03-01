@@ -1,7 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 import { DataService } from '../data.service';
 import { Hero } from '../models/Hero';
 import { Obstacles } from '../models/Obstacles';
+import { Monstre } from '../models/Monstre';
+import { ConditionalExpr } from '@angular/compiler';
 
 @Component({
   selector: 'app-game',
@@ -11,21 +15,13 @@ import { Obstacles } from '../models/Obstacles';
 export class GameComponent implements OnInit {
   @Input() hero:Hero;
   private obstacles:Obstacles[];
-  constructor(private data : DataService) {
-    this.obstacles=[{
-      type:"obstacle",
-      PositionX:5,
-      PositionY:5
-    },{
-      type:"obstacle",
-      PositionX:10,
-      PositionY:10
-    },{
-      type:"obstacle",
-      PositionX: 2,
-      PositionY: 2
-    }]
-  }
+  private monstres:Monstre[];
+  private attaque;
+  private attaqueTour:boolean=false;
+  private gourdins:any;
+  private url:string="https://localhost:44355/api/game";
+
+  constructor(private data : DataService, private http:HttpClient) {}
 
   changePosition(orientation:number){
     if(this.hero.movement>0){
@@ -65,16 +61,42 @@ export class GameComponent implements OnInit {
   }
 
   attaquer(){
-    console.log("Attaquer");
+    this.attaque = {"x":this.hero.PositionX,
+                    "y":this.hero.PositionY};
+    this.attaqueTour=true;
+    console.log(this.attaque);
   }
 
   finTour(){
     this.hero.movement=5;
+    this.attaqueTour=false;
+    let heroPos={"x": this.hero.PositionX,
+                 "y": this.hero.PositionY};
+
+    this.http.post(this.url+"/fintour",{
+      hero:heroPos,
+      attack:this.attaque
+    }).subscribe(response => {
+      console.log(response);
+    });
+    this.http.get(this.url).subscribe((response:any)=>{
+      console.log(response);
+      this.monstres=response.monsters;
+      this.hero.PointsDeVie=response.hero.PointsDeVie;
+    })
   }
 
   ngOnInit() {
     this.hero.movement=5;
     this.hero.type="hero";
+    console.log("init")
+    this.http.get(this.url)
+    .subscribe((response:any)=>{
+      console.log(response);
+      this.monstres=response.monsters;
+      this.obstacles=response.obstacles;
+      this.gourdins=response.gourdins;
+    })
   }
 
 }

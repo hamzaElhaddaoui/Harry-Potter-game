@@ -1,4 +1,4 @@
-<div class="marge"></div>
+
 <div class="row">
   <div class="col-6" *ngFor="let hero of heros">
     <div class="card mb-3" style="max-width: 540px;" appSelectCard (click)="setHero(hero)" [ngClass]="{'selected': hero.Id == heroSelected.Id}">
@@ -9,7 +9,8 @@
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{hero.Nom}}</h5>
-            <p class="card-text">ici description champion.</p>
+            <h6 style="color: brown;">Point de vie: {{hero.PointsDeVie}}</h6>
+            <p class="card-text">{{hero.Description}}</p>
           </div>
         </div>
       </div>
@@ -17,7 +18,7 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-2  offset-5">
+  <div class="col-2  offset-5 margin-btn">
     <button type="button" class="btn btn-success col-12" (click)="selectHero()">Choisir</button>
   </div>
 </div>
