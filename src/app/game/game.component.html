@@ -1,5 +1,25 @@
 <div class="back">
   <div class="row">
+    <div class="col-12" *ngIf="win">
+      <div class="row">
+        <div class="col-8">
+          <h1>Félicitations tu as gagné !!</h1>
+        </div>
+        <div class="col-4">
+         <a type="button" class="btn btn-success margin-top" href="http://localhost:4200/">Rejouer</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-12" *ngIf="lose">
+    <div class="row" >
+      <div class="col-8">
+        <h1>Vous avez perdu !!</h1>
+      </div>
+      <div class="col-4">
+        <a type="button" class="btn btn-danger margin-top" href="http://localhost:4200/">Rejouer</a>
+      </div>
+    </div>
+    </div>
       <div class="col-8 border-black" >
         <app-grid *ngIf="hero && obstacles && monstres" [data]="data.getData()" [hero]="hero" [obstacles]="obstacles" [monstres]="monstres"></app-grid>
       </div>
@@ -8,8 +28,10 @@
           <div class="col-12 h-25">
             <div class="height"></div>
             <div class="row">
-              <div class="col-8"><h6>Mouvement: {{hero.movement}}</h6></div>
              <div class="col-4"><h6>{{hero.PointsDeVie}} &hearts;</h6></div>
+             <div class="col-4"><h6>{{hero.degat}} ⚔️</h6></div>
+             <div class="col-4"><h6>{{hero.portee}} 🏹</h6></div>
+             <div class="col-12"><h6>Mouvement: {{hero.movement}}</h6></div>
             </div>
             <div class="row" style="margin-bottom: 10px;">
               <div class="col-4 offset-4">

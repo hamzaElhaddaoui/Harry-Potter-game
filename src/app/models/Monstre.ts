@@ -8,4 +8,5 @@ export class Monstre{
     PointsDeVie: number;
     PositionX: number;
     PositionY: number;
+    degat:number;
 }

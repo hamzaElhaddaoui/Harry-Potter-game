@@ -10,4 +10,6 @@ export class Hero{
     Avatar: string;
     PositionX: number;
     PositionY: number;
+    degat: number;
+    portee: number;
 }

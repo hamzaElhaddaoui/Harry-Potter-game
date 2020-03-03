@@ -2,14 +2,16 @@
 <div class="row">
   <div class="col-6" *ngFor="let hero of heros">
     <div class="card mb-3" style="max-width: 540px;" appSelectCard (click)="setHero(hero)" [ngClass]="{'selected': hero.Id == heroSelected.Id}">
-      <div class="row no-gutters">
+      <div class="row no-gutters" style="height: 300px;">
         <div class="col-md-4">
           <img [src]="hero.Avatar" class="card-img" [alt]="hero">
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <h5 class="card-title">{{hero.Nom}}</h5>
-            <h6 style="color: brown;">Point de vie: {{hero.PointsDeVie}}</h6>
+            <h6 style="color: brown;">Point de vie: {{hero.PointsDeVie}} &hearts;</h6>
+            <h6 style="color: brown;">Dégat: {{hero.degat}} ⚔️</h6>
+            <h6 style="color: brown;">Portee: {{hero.portee}} 🏹</h6>
             <p class="card-text">{{hero.Description}}</p>
           </div>
         </div>

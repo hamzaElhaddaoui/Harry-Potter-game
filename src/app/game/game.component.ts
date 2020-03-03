@@ -22,6 +22,8 @@ export class GameComponent implements OnInit {
   private attaqueTour:boolean=false;
   private gourdins:any;
   private url:string="https://localhost:44355/api/game";
+  private win:boolean=false;
+  private lose:boolean=false;
 
   constructor(private data : DataService, private http:HttpClient) {}
 
@@ -95,13 +97,22 @@ export class GameComponent implements OnInit {
         console.log("What to change");
         console.log(response);
         this.monstres=response.monsters;
+        this.gourdins=response.gourdins;
+        for (let index = 0; index < this.monstres.length; index++) {
+          this.monstres[index].degat = this.gourdins[index].Degats; 
+        }
         if(this.monstres.length==0){
           console.log("you are the winner");
+          this.win=true;
+          this.http.post(this.url+"/saveToDb","").subscribe(()=>console.log("Data et envoyer"));
         }
         this.hero.PointsDeVie=response.hero.PointsDeVie;
-        if(this.hero.PointsDeVie==0){
+        if(this.hero.PointsDeVie<=0){
           this.isHeroKilled=true;
+          this.hero.PointsDeVie=0;
           console.log("you are dead");
+          this.lose=true;
+          this.http.post(this.url+"/saveToDb","").subscribe(()=>console.log("Data et envoyer"));
         }
   
       })
@@ -118,6 +129,10 @@ export class GameComponent implements OnInit {
       this.monstres=response.monsters;
       this.obstacles=response.obstacles;
       this.gourdins=response.gourdins;
+      for (let index = 0; index < this.monstres.length; index++) {
+        this.monstres[index].degat = this.gourdins[index].Degats;
+        
+      }
     })
   }
 
