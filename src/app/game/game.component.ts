@@ -14,9 +14,11 @@ import { ConditionalExpr } from '@angular/compiler';
 })
 export class GameComponent implements OnInit {
   @Input() hero:Hero;
+  private eventLog:any;
   private obstacles:Obstacles[];
   private monstres:Monstre[];
-  private attaque;
+  private attaque:any;
+  private isHeroKilled:boolean=false;
   private attaqueTour:boolean=false;
   private gourdins:any;
   private url:string="https://localhost:44355/api/game";
@@ -69,27 +71,47 @@ export class GameComponent implements OnInit {
 
   finTour(){
     this.hero.movement=5;
+    if(this.attaqueTour==false){
+      this.attaque={
+        "x": -1,
+        "y": -1
+      }
+      console.log("No attaque");
+    }
     this.attaqueTour=false;
     let heroPos={"x": this.hero.PositionX,
                  "y": this.hero.PositionY};
 
+    
     this.http.post(this.url+"/fintour",{
       hero:heroPos,
       attack:this.attaque
-    }).subscribe(response => {
+    }).subscribe((response:any) => {
       console.log(response);
+
+      this.eventLog = response.gameLog;
+
+      this.http.get(this.url).subscribe((response:any)=>{
+        console.log("What to change");
+        console.log(response);
+        this.monstres=response.monsters;
+        if(this.monstres.length==0){
+          console.log("you are the winner");
+        }
+        this.hero.PointsDeVie=response.hero.PointsDeVie;
+        if(this.hero.PointsDeVie==0){
+          this.isHeroKilled=true;
+          console.log("you are dead");
+        }
+  
+      })
     });
-    this.http.get(this.url).subscribe((response:any)=>{
-      console.log(response);
-      this.monstres=response.monsters;
-      this.hero.PointsDeVie=response.hero.PointsDeVie;
-    })
+    
   }
 
   ngOnInit() {
     this.hero.movement=5;
     this.hero.type="hero";
-    console.log("init")
     this.http.get(this.url)
     .subscribe((response:any)=>{
       console.log(response);

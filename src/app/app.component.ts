@@ -30,8 +30,8 @@ export class AppComponent {
     }).subscribe((response)=>{
       console.log('id envoyer');
       console.log(response);
+      this.isHeroSelected=true;
     })
-    this.isHeroSelected=true;
   }
 
 }

@@ -28,7 +28,7 @@
   <div class="container h-100">
     <app-start *ngIf="!isGameStarted && !isHeroSelected" (start)="startGame()"></app-start>
     <app-heros *ngIf="isGameStarted && !isHeroSelected" (hero)="setHero($event)"></app-heros>
-    <app-game *ngIf="isGameStarted && isHeroSelected" [hero]="heroSelected"></app-game>
+    <app-game *ngIf="isGameStarted && isHeroSelected " [hero]="heroSelected"></app-game>
   </div>
 </header>
 

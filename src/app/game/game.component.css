@@ -10,8 +10,9 @@
     border: 1px solid blue;
 }
 .back{
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.5);
     border-radius: 5px;
+    /* max-height: 630px; */
 }
 
 .height{
@@ -20,4 +21,7 @@
 
 .whiteFont{
     color: white !important;
+}
+.margin-top{
+    margin-top: 10px;
 }

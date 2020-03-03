@@ -21,13 +21,12 @@ export class GridComponent implements OnInit, OnChanges{
   private field : object={
     type:"normalField",
   };
-
   private map:any[]=[];
-  private nbrRow: object[] = Array(17);
 
+  private nbrRow: object[] = Array(17);
   private map1:number[][] = Array<number[]>(17);
   
-  constructor() { 
+  constructor() {
   }
 
   private fillMap(){
@@ -40,21 +39,20 @@ export class GridComponent implements OnInit, OnChanges{
   }
 
   private fillObstacle(){
-    if(this.obstacles!=null){
       this.obstacles.forEach(obstacle => {
         obstacle.type="obstacle";
         this.map[obstacle.PositionX][obstacle.PositionY]=obstacle;
       })
-    }
+    
   }
 
   private fillMonstre(){
-    if (this.monstres!=null){
+    
       this.monstres.forEach(monstre => {
         monstre.type="monstre";
         this.map[monstre.PositionX][monstre.PositionY]= monstre;
       })
-    }
+    
   }
 
   private setHero(){
@@ -70,10 +68,10 @@ export class GridComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.fillMap(); 
-    this.fillObstacle();
-    this.fillMonstre();
-    this.setHero();
-  }
 
+      this.fillMap(); 
+      this.fillObstacle();
+      this.fillMonstre();
+      this.setHero();
+  }
 }

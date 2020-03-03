@@ -1,15 +1,15 @@
 <div class="back">
   <div class="row">
       <div class="col-8 border-black" >
-        <app-grid [data]="data.getData()" [hero]="hero" [obstacles]="obstacles" [monstres]="monstres"></app-grid>
+        <app-grid *ngIf="hero && obstacles && monstres" [data]="data.getData()" [hero]="hero" [obstacles]="obstacles" [monstres]="monstres"></app-grid>
       </div>
       <div class="col-4 ">
         
           <div class="col-12 h-25">
             <div class="height"></div>
             <div class="row">
-              <div class="col-6"><h6>Mouvement: {{hero.movement}}</h6></div>
-             <div class="col-6"><h6>Point de vie: {{hero.PointsDeVie}}</h6></div>
+              <div class="col-8"><h6>Mouvement: {{hero.movement}}</h6></div>
+             <div class="col-4"><h6>{{hero.PointsDeVie}} &hearts;</h6></div>
             </div>
             <div class="row" style="margin-bottom: 10px;">
               <div class="col-4 offset-4">
@@ -38,6 +38,11 @@
             
               <div class="col-6">
                 <a class="btn btn-primary whiteFont" (click)="finTour()">Fin tour</a>
+              </div>
+            </div>
+            <div class="row no-gutters">
+              <div class="col-12 margin-top">
+                {{eventLog}}
               </div>
             </div>
             <div class="row">
